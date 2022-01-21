@@ -85,7 +85,7 @@ public class AccountInformation extends AppCompatActivity {
         userInfo = new UserInfo(getApplicationContext());
         user_id = userInfo.getKeyId();
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, Utils.AccInfo1,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, Utils.AccInfo,
                 new Response.Listener<String>()
                 {
                     @Override

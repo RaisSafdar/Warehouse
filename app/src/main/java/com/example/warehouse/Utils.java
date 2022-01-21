@@ -10,6 +10,8 @@ public class Utils {
     public static final String OrderDetails = BASE_IP + "Warehouse/OrderDetails.php";
     public static final String OrderReady = BASE_IP + "Warehouse/OrderReady.php";
     public static final String MyVendors = BASE_IP + "Warehouse/myvendors.php";
+    public static final String AccInfo = BASE_IP + "Warehouse/account_information.php";
+    public static final String Update = BASE_IP + "Warehouse/update_profile.php";
 
 
 }
