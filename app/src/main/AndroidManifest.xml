@@ -13,17 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Warehouse">
         <activity
-            android:name=".ContactUs"
+            android:name=".InventoryActivity"
             android:exported="true" />
         <activity
-            android:name=".Complaint"
+            android:name=".ContactUs"
             android:exported="true" />
         <activity
             android:name=".AccountInformation"
             android:exported="true" />
         <activity
             android:name=".ForgotPasswordActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".OrderDetails"
             android:exported="true" />

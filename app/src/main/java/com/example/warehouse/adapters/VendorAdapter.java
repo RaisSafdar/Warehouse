@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.warehouse.InventoryActivity;
 import com.example.warehouse.R;
 import com.example.warehouse.model.VendorsModel;
 
@@ -41,11 +42,11 @@ public class VendorAdapter extends RecyclerView.Adapter<VendorAdapter.myviewhold
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(context,VendorsProducts.class);
+                Intent intent = new Intent(context, InventoryActivity.class);
 //                intent.putExtra("vendor_id",holder.vendor_id);
 //                intent.putExtra("vendor_name",holder.textView.getText().toString());
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                context.startActivity(intent);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
 

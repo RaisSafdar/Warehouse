@@ -3,23 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/drawable-v24/buttonnn.xml" value="0.2203125" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/drawable-v24/chekcout.xml" value="0.1125" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/drawable-v24/dispatched.xml" value="0.2203125" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/drawable-v24/pending.xml" value="0.2203125" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/drawable-v24/rel.xml" value="0.2203125" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/drawable-v24/rell.xml" value="0.2203125" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/drawable/ic_baseline_image24_foreground.xml" value="0.2203125" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/drawable/profileitems.xml" value="0.12222222222222222" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_account_information.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_complaint.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_contact_us.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_inventory.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_main.xml" value="0.18796296296296297" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_low_inventory.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_total_inventory.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18796296296296297" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_forgot_password.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_main.xml" value="0.20102564102564102" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_my_orders.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/cartitems.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_dashboard.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/myorderscard.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/myvendorsorders.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
