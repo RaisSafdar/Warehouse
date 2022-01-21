@@ -15,6 +15,9 @@
             android:name=".ForgotPasswordActivity"
             android:exported="true"/>
         <activity
+            android:name=".OrderDetails"
+            android:exported="true"/>
+        <activity
             android:name=".Login"
             android:exported="true" />
         <activity

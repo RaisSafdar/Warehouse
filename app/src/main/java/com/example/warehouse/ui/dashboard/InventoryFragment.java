@@ -1,4 +1,4 @@
-package com.example.warehouse.ui.home;
+package com.example.warehouse.ui.dashboard;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,55 +24,55 @@ import com.example.warehouse.R;
 import com.example.warehouse.Singleton;
 import com.example.warehouse.UserInfo;
 import com.example.warehouse.Utils;
-import com.example.warehouse.adapters.MyordersAdapter;
-import com.example.warehouse.databinding.FragmentHomeBinding;
-import com.example.warehouse.model.MyOrdersModel;
+import com.example.warehouse.adapters.VendorAdapter;
+import com.example.warehouse.databinding.FragmentDashboardBinding;
+import com.example.warehouse.model.VendorsModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-public class HomeFragment extends Fragment {
+public class InventoryFragment extends Fragment {
+
     RecyclerView recyclerView;
     JSONObject server_responce;
-    MyordersAdapter adapter;
-    List<MyOrdersModel> list;
+    VendorAdapter adapter;
+    List<VendorsModel> list;
     UserInfo userInfo;
-    String user_id;
+    String user_id,name,vendor_id;
     ProgressDialog progressDialog;
-    TextView textView;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View b = inflater.inflate(R.layout.fragment_home, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...Please wait");
         progressDialog.setCanceledOnTouchOutside(false);
-        recyclerView = b.findViewById(R.id.rviewmyorders);
-
-        textView = b.findViewById(R.id.torder);
+        recyclerView = view.findViewById(R.id.vendorerec);
         list = new ArrayList<>();
-
         userInfo = new UserInfo(getActivity());
         user_id = userInfo.getKeyId();
+
+
 
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         progressDialog.show();
-        StringRequest postRequest = new StringRequest(Request.Method.POST, Utils.MyOrders,
-                new Response.Listener<String>() {
+        StringRequest postRequest = new StringRequest(Request.Method.POST, Utils.MyVendors,
+                new Response.Listener<String>()
+                {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        Log.d("Response", response);
+                        Log.d("Responsezero", response);
 
                         try {
                             JSONObject obj = new JSONObject(response);
@@ -82,7 +81,7 @@ public class HomeFragment extends Fragment {
                             //so here we are getting that json array
                             JSONArray jsonArray = obj.getJSONArray("pkwholesales");
 
-                            Log.d("1212", "onResponse: " + jsonArray.length());
+                            Log.d("1212", "onResponse: "+jsonArray.length());
 
 
                             for (int i = 0; i < jsonArray.length(); i++) {
@@ -97,59 +96,47 @@ public class HomeFragment extends Fragment {
                                 //Toast.makeText(getActivity(),error,Toast.LENGTH_LONG).show();
 
                                 if (error) {
-                                    Toast.makeText(getActivity(), "You Have No Orders Yet", Toast.LENGTH_SHORT).show();
-
                                     progressDialog.dismiss();
+                                    Log.d("ee", "onResponse: "+error);
 
-
-//                                    Toast.makeText(getActivity(), "You Have No Orders Yet", Toast.LENGTH_LONG).show();
 
 
                                 } else {
                                     progressDialog.dismiss();
 
 
-                                    String id = server_responce.getString("order_id");
-                                    String date = server_responce.getString("date");
-                                    String delivery_status = server_responce.getString("delivery_status");
-                                    String pending = server_responce.getString("pending");
-                                    String city = server_responce.getString("city");
-                                    textView.setText(pending);
-                                    String delpercent = server_responce.getString("delpercentage");
+
+                                    vendor_id = server_responce.getString("vendor_id");
+                                    name = server_responce.getString("name");
 
 
 
 
-                                    //Toast.makeText(getActivity(),image,Toast.LENGTH_LONG).show();
 
-
-                                    MyOrdersModel listData = new MyOrdersModel(id,
-                                            date, delivery_status, city,delpercent);
+                                    VendorsModel listData = new VendorsModel(name,vendor_id);
                                     list.add(listData);
                                 }
 
                             }
-                            Collections.reverse(list);
-                            adapter = new MyordersAdapter(list, getActivity());
+                            adapter=new VendorAdapter(list,getActivity());
 
                             recyclerView.setAdapter(adapter);
 
                         } catch (JSONException e) {
-                            progressDialog.dismiss();
 
                             e.printStackTrace();
-
+                            Log.d("Error.Response", Objects.requireNonNull(e.getMessage()));
 
 
                         }
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener()
+                {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
-                        Toast.makeText(getActivity(), "Internet Issue", Toast.LENGTH_SHORT).show();
-
+                        // error
+                        Log.d("verror", "onErrorResponse: "+error.getMessage());
                     }
                 }
         ) {
@@ -159,15 +146,15 @@ public class HomeFragment extends Fragment {
 
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
-                params.put("customer_id", user_id);
+                params.put("warehouse_id", user_id);
                 return params;
 
 
             }
 
         };
-        Singleton.getInstance(getActivity()).addToRequestQueue(postRequest);
+        Singleton.getInstance (getActivity()).addToRequestQueue (postRequest );
+       return  view;
 
-        return b;
     }
 }
