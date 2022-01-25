@@ -33,7 +33,6 @@ public class VendorAdapter extends RecyclerView.Adapter<VendorAdapter.myviewhold
         myviewholder viewHolder = new myviewholder(view);
         return viewHolder;
     }
-
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
         VendorsModel myOrdersModel = list.get(position);
@@ -43,9 +42,9 @@ public class VendorAdapter extends RecyclerView.Adapter<VendorAdapter.myviewhold
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, InventoryActivity.class);
-//                intent.putExtra("vendor_id",holder.vendor_id);
-//                intent.putExtra("vendor_name",holder.textView.getText().toString());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("vendor_id",holder.vendor_id);
+//              intent.putExtra("vendor_name",holder.textView.getText().toString());
+
                 context.startActivity(intent);
             }
         });

@@ -6,7 +6,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -17,6 +20,8 @@ public class InventoryActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     ViewPagerAdapter adapter;
+    String vender_id;
+    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,13 +29,20 @@ public class InventoryActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tablayout1);
         viewPager = (ViewPager) findViewById(R.id.vpager);
         tabLayout.setupWithViewPager(viewPager);
-        addTabs(viewPager);
+        Intent intent = getIntent();
+        vender_id = intent.getStringExtra("vendor_id");
+        addTabs(viewPager,vender_id);
+
+        //id = Integer.parseInt(intent.getStringExtra("vendor_id"));
+
+//        Log.d("idddddd", "onCreateView: "+vender_id);
     }
-    private void addTabs(ViewPager viewPager) {
+    private void addTabs(ViewPager viewPager,String vender_id) {
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new LowInventoryFragment(), "Low Inventory");
-        adapter.addFrag(new TotalInventoryFragment(), "Total Inventory");
+        Log.d("idddddd", "onCreateView: "+vender_id);
+        adapter.addFrag(new LowInventoryFragment(vender_id), "Low Inventory");
+        adapter.addFrag(new TotalInventoryFragment(vender_id), "Total Inventory");
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         viewPager.setOffscreenPageLimit(1);
