@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -123,9 +124,7 @@ public class InventoryFragment extends Fragment {
                             recyclerView.setAdapter(adapter);
 
                         } catch (JSONException e) {
-
-                            e.printStackTrace();
-                            Log.d("Error.Response", Objects.requireNonNull(e.getMessage()));
+                            progressDialog.dismiss();
 
 
                         }
@@ -136,7 +135,7 @@ public class InventoryFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("verror", "onErrorResponse: "+error.getMessage());
+                        Toast.makeText(getActivity(), "Internet Error", Toast.LENGTH_SHORT).show();
                     }
                 }
         ) {

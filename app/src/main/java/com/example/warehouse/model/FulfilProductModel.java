@@ -6,18 +6,10 @@ public class FulfilProductModel {
     public FulfilProductModel() {
     }
 
-    public FulfilProductModel(String image, String name, String qty,String rate) {
+    public FulfilProductModel(String image, String name, String qty, String rate) {
         this.image = image;
         this.name = name;
         this.qty = qty;
-        this.rate = rate;
-    }
-
-    public String getRate() {
-        return rate;
-    }
-
-    public void setRate(String rate) {
         this.rate = rate;
     }
 
@@ -43,5 +35,13 @@ public class FulfilProductModel {
 
     public void setQty(String qty) {
         this.qty = qty;
+    }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
     }
 }

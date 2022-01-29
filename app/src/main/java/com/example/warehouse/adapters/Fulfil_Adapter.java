@@ -18,13 +18,12 @@ import java.util.List;
 
 public class Fulfil_Adapter extends RecyclerView.Adapter<Fulfil_Adapter.myviewholder> {
     List<FulfilProductModel> list;
+    Context context;
 
     public Fulfil_Adapter(List<FulfilProductModel> list, Context context) {
         this.list = list;
         this.context = context;
     }
-
-    Context context;
 
     @NonNull
     @Override
@@ -39,7 +38,6 @@ public class Fulfil_Adapter extends RecyclerView.Adapter<Fulfil_Adapter.myviewho
         Glide.with(context).load(deliveryModel.getImage()).placeholder(R.drawable.ic_baseline_image_24).into(holder.imageView);
         holder.qtty.setText(deliveryModel.getQty());
         holder.pname.setText(deliveryModel.getName());
-
     }
 
     @Override
