@@ -17,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.warehouse.adapters.FulfilAdapterTotal;
 import com.example.warehouse.adapters.Fulfil_Adapter;
 import com.example.warehouse.model.FulfilProductModel;
 
@@ -33,7 +34,7 @@ public class TotalInventoryFragment extends Fragment {
 
     RecyclerView recyclerView;
     JSONObject server_responce;
-    Fulfil_Adapter adapter;
+    FulfilAdapterTotal adapter;
     List<FulfilProductModel> list;
     UserInfo userInfo;
     String user_id,vender_id;
@@ -48,13 +49,13 @@ public class TotalInventoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fulfiil_total_inventory_card, container, false);
+        View view =  inflater.inflate(R.layout.fragment_total_inventory, container, false);
 
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...Please wait");
         progressDialog.setCanceledOnTouchOutside(false);
         userInfo = new UserInfo(getActivity());
-        recyclerView = view.findViewById(R.id.rviewlow);
+        recyclerView = view.findViewById(R.id.rviewtotal);
 
         list = new ArrayList<FulfilProductModel>();
 
@@ -108,7 +109,7 @@ public class TotalInventoryFragment extends Fragment {
                                 }
 
                             }
-                            adapter=new Fulfil_Adapter(list,getActivity());
+                            adapter=new FulfilAdapterTotal(list,getActivity());
 
                             recyclerView.setAdapter(adapter);
 

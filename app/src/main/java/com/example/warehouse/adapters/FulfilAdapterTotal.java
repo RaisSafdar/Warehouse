@@ -1,6 +1,7 @@
 package com.example.warehouse.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,17 @@ public class FulfilAdapterTotal extends RecyclerView.Adapter<FulfilAdapterTotal.
         Glide.with(context).load(deliveryModel.getImage()).placeholder(R.drawable.ic_baseline_image_24).into(holder.imageView);
         holder.qtty.setText(deliveryModel.getQty());
         holder.pname.setText(deliveryModel.getName());
+
+
         holder.qty = Integer.parseInt(deliveryModel.getQty());
         holder.price = Integer.parseInt(deliveryModel.getRate());
+
+
         holder.tamount = holder.qty* holder.price;
+        holder.rate.setText(deliveryModel.getRate());
         holder.amount.setText(String.valueOf(holder.tamount));
 
+        Log.d("price", "onBindViewHolder: "+holder.qty);
 
     }
 

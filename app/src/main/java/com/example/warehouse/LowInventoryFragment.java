@@ -54,7 +54,7 @@ public class LowInventoryFragment extends Fragment {
         progressDialog.setCanceledOnTouchOutside(false);
         userInfo = new UserInfo(getActivity());
         recyclerView = view.findViewById(R.id.rviewlow);
-
+       // Toast.makeText(getActivity(), ""+vendor_id, Toast.LENGTH_SHORT).show();
         list = new ArrayList<FulfilProductModel>();
 
         userInfo = new UserInfo(getActivity());
@@ -69,7 +69,7 @@ public class LowInventoryFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         // response
-
+                        Log.d("Responsethid", response);
                         try {
                             JSONObject obj = new JSONObject(response);
 
