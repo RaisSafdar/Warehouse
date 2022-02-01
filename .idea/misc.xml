@@ -12,11 +12,16 @@
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_low_inventory.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_notifications.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_total_inventory.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_warehouse_ledger.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fulfiil_total_inventory_card.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fulfil_product_card.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/ledger_card.xml" value="0.17407407407407408" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/warehouse_ledger_card.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18796296296296297" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_forgot_password.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />

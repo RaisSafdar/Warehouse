@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sign_in"
+    android:id="@+id/hfrag"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -18,6 +19,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relmen"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintBottom_toBottomOf="@id/aa"
+        android:background="@drawable/menubg"
+        android:layout_marginStart="@dimen/_15sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/menu"
+            android:id="@+id/menus"
+            android:scaleType="fitXY"/>
+    </RelativeLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl1"

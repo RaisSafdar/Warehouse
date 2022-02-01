@@ -13,6 +13,8 @@ public class Utils {
     public static final String AccInfo = BASE_IP + "Warehouse/account_Information.php";
     public static final String Update = BASE_IP + "Warehouse/update_profile.php";
     public static final String Fulfill_products = BASE_IP + "Warehouse/FulfillProducts.php";
+    public static final String Inventory_ledger = BASE_IP + "Warehouse/inventory_ledger.php";
+    public static final String Warehouse_ledger = BASE_IP + "Warehouse/warehouse_ledger.php";
     public static final String Fulfill_productsTotal = BASE_IP + "Warehouse/FulfillProductsTotal.php";
 
 

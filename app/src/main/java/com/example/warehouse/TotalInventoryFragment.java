@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -39,6 +40,7 @@ public class TotalInventoryFragment extends Fragment {
     UserInfo userInfo;
     String user_id,vender_id;
     ProgressDialog progressDialog;
+    TextView nolow;
 
     public TotalInventoryFragment(String vender_id) {
         this.vender_id = vender_id;
@@ -56,7 +58,7 @@ public class TotalInventoryFragment extends Fragment {
         progressDialog.setCanceledOnTouchOutside(false);
         userInfo = new UserInfo(getActivity());
         recyclerView = view.findViewById(R.id.rviewtotal);
-
+        nolow = view.findViewById(R.id.nolow);
         list = new ArrayList<FulfilProductModel>();
 
         userInfo = new UserInfo(getActivity());
@@ -92,10 +94,14 @@ public class TotalInventoryFragment extends Fragment {
 //
                                 if (error) {
                                     progressDialog.dismiss();
+                                        nolow.setVisibility(View.VISIBLE);
+
+
+
                                 } else {
 
-                                    progressDialog.dismiss();
 
+                                    nolow.setVisibility(View.GONE);
                                     String image = server_responce.getString("product_image");
                                     String product_images = Utils.PimageUrl + image;
                                     String pname = server_responce.getString("product_name");
@@ -112,6 +118,14 @@ public class TotalInventoryFragment extends Fragment {
                             adapter=new FulfilAdapterTotal(list,getActivity());
 
                             recyclerView.setAdapter(adapter);
+                            if (recyclerView.getAdapter().getItemCount()==0){
+                                progressDialog.dismiss();
+                                nolow.setVisibility(View.VISIBLE);
+                            }
+                            else {
+                                progressDialog.dismiss();
+                                nolow.setVisibility(View.GONE);
+                            }
 
                         } catch (JSONException e) {
                             progressDialog.dismiss();

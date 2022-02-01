@@ -6,12 +6,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +23,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.warehouse.ProfileFragment;
 import com.example.warehouse.R;
 import com.example.warehouse.Singleton;
 import com.example.warehouse.UserInfo;
@@ -48,6 +51,7 @@ public class HomeFragment extends Fragment {
     String user_id;
     ProgressDialog progressDialog;
     TextView textView;
+    RelativeLayout relmen;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,6 +61,7 @@ public class HomeFragment extends Fragment {
         progressDialog.setMessage("Loading...Please wait");
         progressDialog.setCanceledOnTouchOutside(false);
         recyclerView = b.findViewById(R.id.rviewmyorders);
+        relmen = b.findViewById(R.id.relmen);
 
         textView = b.findViewById(R.id.torder);
         list = new ArrayList<>();
@@ -66,6 +71,17 @@ public class HomeFragment extends Fragment {
 
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        relmen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new ProfileFragment();
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.hfrag, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
         progressDialog.show();
         StringRequest postRequest = new StringRequest(Request.Method.POST, Utils.MyOrders,

@@ -1,7 +1,12 @@
-package com.example.warehouse.ui.notifications;
+package com.example.warehouse;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,25 +14,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.warehouse.R;
-import com.example.warehouse.Singleton;
-import com.example.warehouse.UserInfo;
-import com.example.warehouse.Utils;
 import com.example.warehouse.adapters.InventoryLedgerAdapter;
-import com.example.warehouse.databinding.FragmentNotificationsBinding;
+import com.example.warehouse.adapters.WarehouseLedgerAdapter;
 import com.example.warehouse.model.InventoryLedgerModel;
+import com.example.warehouse.model.WarehouseLedgerModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -38,23 +32,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-public class NotificationsFragment extends Fragment {
+public class WarehouseLedgerFragment extends Fragment {
     RecyclerView recyclerView;
     JSONObject server_responce;
-    InventoryLedgerAdapter adapter;
-    List<InventoryLedgerModel> list;
+    WarehouseLedgerAdapter adapter;
+    List<WarehouseLedgerModel> list;
     ProgressDialog progressDialog;
-    String cid;
-    FloatingActionButton floatingActionButton;
     String user_id;
     UserInfo userInfo;
+    TextView noresult;
 
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_notifications, container, false);
-        recyclerView =view.findViewById(R.id.adminledrec);
+        View view = inflater.inflate(R.layout.fragment_warehouse_ledger, container, false);
+
+        recyclerView = view.findViewById(R.id.adminledrec);
+        noresult = view.findViewById(R.id.noresult);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userInfo = new UserInfo(getActivity());
         user_id = userInfo.getKeyId();
@@ -67,12 +66,12 @@ public class NotificationsFragment extends Fragment {
         return view;
     }
     private void loadData() {
-        StringRequest postRequest = new StringRequest(Request.Method.POST, Utils.Inventory_ledger,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, Utils.Warehouse_ledger,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        Log.d("Responseprodfg", response);
+                        Log.d("Responseprod", response);
 
                         try {
                             JSONObject obj = new JSONObject(response);
@@ -94,33 +93,35 @@ public class NotificationsFragment extends Fragment {
                                     Toast.makeText(getActivity(), "No Result Found", Toast.LENGTH_SHORT).show();
                                 } else {
 
-
-
                                     progressDialog.dismiss();
                                     String id = server_responce.getString("id");
-                                    String pid = server_responce.getString("product_id");
                                     String date = server_responce.getString("date");
-                                    String received_quantity = server_responce.getString("received_quantity");
-                                    String sale_quantity = server_responce.getString("sale_quantity");
+                                    String debit = server_responce.getString("total_payment");
+                                    String credit = server_responce.getString("payment_received");
                                     String orderid = server_responce.getString("order_id");
-                                    String product_price = server_responce.getString("product_price");
-                                    String sale_price = server_responce.getString("sale_price");
-                                    String product_name = server_responce.getString("product_name");
                                     String vendorid = server_responce.getString("vendor_id");
-                                    String received_amount = server_responce.getString("received_amount");
+                                    String vendorname = server_responce.getString("venname");
 
 
-                                    InventoryLedgerModel model = new InventoryLedgerModel(id,date,orderid,product_name,sale_price,
-                                            sale_quantity,received_quantity,received_amount,product_price);
+                                    WarehouseLedgerModel model = new WarehouseLedgerModel(id, date, orderid, credit, debit
+                                            , vendorid,vendorname);
                                     list.add(model);
 
 
                                 }
                             }
 
-                            adapter = new InventoryLedgerAdapter(list, getActivity());
+                            adapter = new WarehouseLedgerAdapter(list, getActivity());
 
                             recyclerView.setAdapter(adapter);
+                            if (recyclerView.getAdapter().getItemCount()==0){
+                                progressDialog.dismiss();
+                                noresult.setVisibility(View.VISIBLE);
+                            }
+                            else {
+                                progressDialog.dismiss();
+                                noresult.setVisibility(View.GONE);
+                            }
 
                         } catch (JSONException e) {
                             progressDialog.dismiss();
@@ -135,9 +136,7 @@ public class NotificationsFragment extends Fragment {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         progressDialog.dismiss();
-
-                        Toast.makeText(getActivity(), "Internet issue", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getActivity(), "Internet Issue", Toast.LENGTH_SHORT).show();
                     }
                 }
         ) {
@@ -165,7 +164,8 @@ public class NotificationsFragment extends Fragment {
 
         };
         Singleton.getInstance(getActivity()).addToRequestQueue(postRequest);
-    }
 
+
+    }
 
 }

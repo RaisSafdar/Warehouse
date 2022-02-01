@@ -94,6 +94,7 @@ public class LowInventoryFragment extends Fragment {
                                 if (error) {
                                     progressDialog.dismiss();
 
+
                                 } else {
 
                                     progressDialog.dismiss();
@@ -114,9 +115,11 @@ public class LowInventoryFragment extends Fragment {
 
                             recyclerView.setAdapter(adapter);
                             if (recyclerView.getAdapter().getItemCount()==0){
+                                progressDialog.dismiss();
                                 nolow.setVisibility(View.VISIBLE);
                             }
                             else {
+                                progressDialog.dismiss();
                                 nolow.setVisibility(View.GONE);
                             }
 
