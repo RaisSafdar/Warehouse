@@ -7,10 +7,10 @@ public class UserInfo {
     private static final String PREF_NAME = "userinfo";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_ID = "id";
-    private static final String KEY_EMAIL = "email";
+    private static final String KEY_PASS = "pass";
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
-    String idd;
+    String idd,password;
     Context ctx;
 
     public UserInfo(Context ctx) {
@@ -33,8 +33,9 @@ public class UserInfo {
 
     }
 
-    public void setEmail(String email) {
-        editor.putString ( KEY_EMAIL , email );
+    public void setPass(String passs) {
+        password = passs;
+        editor.putString ( KEY_PASS , passs );
         editor.apply ();
     }
 
@@ -47,8 +48,8 @@ public class UserInfo {
         return prefs.getString ( KEY_USERNAME , "" );
     }
 
-    public String getKeyEmail() {
-        return prefs.getString ( KEY_EMAIL , "" );
+    public String getKeyPass() {
+        return prefs.getString ( KEY_PASS , password );
     }
     public String getKeyId() {
         return prefs.getString ( KEY_ID,idd);

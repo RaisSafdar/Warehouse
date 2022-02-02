@@ -46,7 +46,6 @@ public class TotalInventoryFragment extends Fragment {
         this.vender_id = vender_id;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

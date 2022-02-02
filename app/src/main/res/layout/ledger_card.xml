@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/pname"
-            android:layout_width="@dimen/_50sdp"
+            android:layout_width="@dimen/_90sdp"
             android:layout_height="wrap_content"
             android:text="pname"
             android:background="@color/grey"
@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/recievedqty"
-            android:layout_width="@dimen/_70sdp"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="wrap_content"
             android:text="recievedqty"
             android:background="@color/grey"

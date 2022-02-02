@@ -27,11 +27,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login extends AppCompatActivity {
-TextView signupacc,loginbtn,forgot;
+TextView loginbtn,forgot;
 EditText phonenumber, passwrod;
 String phonenumbers, passwords;
 UserSession userSession;
-    String user_id;
+    String user_id,user_pass;
     UserInfo userInfo;
 ProgressDialog progressDialog;
     ImageView imageView;
@@ -58,9 +58,10 @@ ProgressDialog progressDialog;
 
         userInfo = new UserInfo(Login.this);
         user_id = userInfo.getKeyId();
+        user_pass = userInfo.getKeyPass();
 
         if (userSession.isUserLoggedin()) {
-            checkstatus(user_id);
+            checkstatus(user_id,user_pass);
         }
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,12 +95,14 @@ ProgressDialog progressDialog;
                             boolean error = jObj.getBoolean("error");
                             String error_msg = jObj.getString("msg");
                             String id = jObj.getString("id");
+                            String pass = jObj.getString("pass");
 
 
                             UserInfo info = new UserInfo(getApplicationContext());
 
                             userSession.setLoggedin(true);
                             info.setId(id);
+                            info.setPass(pass);
 
 
 
@@ -207,7 +210,7 @@ ProgressDialog progressDialog;
             }
         });
     }
-    public void checkstatus(String ids){
+    public void checkstatus(String ids,String passes){
         progressDialog.show();
 
 
@@ -227,15 +230,20 @@ ProgressDialog progressDialog;
 
                     if (!error) {
                         String id = jObj.getString("status");
-                        Log.d("gggg", "onResponse: "+id);
-
+                        String pass2 = jObj.getString("pass");
                         if (id.equals("Active")) {
+                            if (passes.equals(pass2)) {
 
 
-                            progressDialog.dismiss();
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                                progressDialog.dismiss();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }else {
+                                progressDialog.dismiss();
+                                Toast.makeText(Login.this, "Password Changed. Login Again", Toast.LENGTH_SHORT).show();
+
+                            }
 
                         }else {
                             Toast.makeText(Login.this, "Account Not Active", Toast.LENGTH_SHORT).show();

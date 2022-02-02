@@ -198,7 +198,7 @@ public class AccountInformation extends AppCompatActivity {
                     String error_msg = jObj.getString("msg");
 
 
-                    if (!error) {
+                    if (error) {
 
                         progressDialog.hide();
 
@@ -208,11 +208,8 @@ public class AccountInformation extends AppCompatActivity {
                     }else {
 
                         progressDialog.dismiss();
-
-
-
                         Toast.makeText(getApplicationContext(), "Profile Updated Successfull", Toast.LENGTH_SHORT).show();
-
+                        userInfo.setPass(password);
 
                     }
 
