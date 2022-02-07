@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment {
     UserInfo userInfo;
     String user_id;
     ProgressDialog progressDialog;
-    TextView textView;
+    TextView textView,noorder;
     RelativeLayout relmen;
 
 
@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
         progressDialog.setMessage("Loading...Please wait");
         progressDialog.setCanceledOnTouchOutside(false);
         recyclerView = b.findViewById(R.id.rviewmyorders);
+        noorder = b.findViewById(R.id.noorder);
         relmen = b.findViewById(R.id.relmen);
 
         textView = b.findViewById(R.id.torder);
@@ -114,7 +115,8 @@ public class HomeFragment extends Fragment {
 
                                 if (error) {
                                     Toast.makeText(getActivity(), "You Have No Orders Yet", Toast.LENGTH_SHORT).show();
-
+                                    textView.setText("0");
+                                    noorder.setVisibility(View.VISIBLE);
                                     progressDialog.dismiss();
 
 
