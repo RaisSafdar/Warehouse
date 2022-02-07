@@ -115,6 +115,8 @@
 
 
 
+
+
                 <ImageView
                     android:id="@+id/icons3"
                     android:layout_width="@dimen/_44sdp"
@@ -215,6 +217,45 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/accinfo"
                     app:layout_constraintTop_toBottomOf="@id/icons4" />
+
+
+                <ImageView
+                    android:id="@+id/icons8"
+                    android:layout_width="@dimen/_44sdp"
+                    android:layout_height="@dimen/_44sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/orderrect"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_baseline_history_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/icons7" />
+
+                <TextView
+                    android:id="@+id/history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_44sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center_vertical"
+                    android:text="History"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp"
+                    app:layout_constraintStart_toEndOf="@id/icons7"
+                    app:layout_constraintTop_toBottomOf="@id/icons7" />
+
+                <ImageView
+                    android:id="@+id/arrow8"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_44sdp"
+                    android:layout_marginLeft="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:src="@drawable/arrowblack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/accinfo"
+                    app:layout_constraintTop_toBottomOf="@id/icons7" />
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

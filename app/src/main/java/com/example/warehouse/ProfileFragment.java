@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileFragment extends Fragment {
-    ImageView accinfo,settings,share,call;
+    ImageView accinfo,settings,share,call,history;
     TextView username;
     UserInfo userInfo;
     JSONObject server_responce;
@@ -46,6 +46,7 @@ public class ProfileFragment extends Fragment {
         share = view.findViewById(R.id.arrow4);
 
         call = view.findViewById(R.id.arrow7);
+        history = view.findViewById(R.id.arrow8);
 
         username = view.findViewById(R.id.username);
         progressDialog = new ProgressDialog(getActivity());
@@ -198,6 +199,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),ContactUs.class);
+                startActivity(intent);
+            }
+        });
+
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),OrderHistory.class);
                 startActivity(intent);
             }
         });

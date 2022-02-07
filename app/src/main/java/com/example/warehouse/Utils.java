@@ -16,6 +16,7 @@ public class Utils {
     public static final String Inventory_ledger = BASE_IP + "Warehouse/inventory_ledger.php";
     public static final String Warehouse_ledger = BASE_IP + "Warehouse/warehouse_ledger.php";
     public static final String Fulfill_productsTotal = BASE_IP + "Warehouse/FulfillProductsTotal.php";
+    public static final String history = BASE_IP + "Warehouse/history.php";
 
 
 }

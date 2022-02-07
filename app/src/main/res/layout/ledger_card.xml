@@ -88,18 +88,6 @@
             android:singleLine="true"
             />
         <TextView
-            android:id="@+id/receivedamount"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="wrap_content"
-            android:text="receivedamount"
-            android:background="@color/grey"
-            android:layout_margin="@dimen/_1sdp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16ssp"
-            android:textAlignment="center"
-            android:singleLine="true"
-            />
-        <TextView
             android:id="@+id/saleprice"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="wrap_content"

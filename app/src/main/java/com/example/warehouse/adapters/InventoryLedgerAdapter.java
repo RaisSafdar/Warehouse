@@ -39,7 +39,6 @@ public class InventoryLedgerAdapter extends RecyclerView.Adapter<InventoryLedger
         holder.saleqty.setText(model.getSale_quantity());
         holder.saleprice.setText(model.getSale_price());
         holder.recqty.setText(model.getReceived_quantity());
-        holder.recamt.setText(model.getReceived_amount());
         holder.orderid.setText(model.getOrderid());
         holder.itemprice.setText(model.getProduct_price());
 
@@ -53,7 +52,7 @@ public class InventoryLedgerAdapter extends RecyclerView.Adapter<InventoryLedger
     }
 
     public class myviewholder extends RecyclerView.ViewHolder {
-        TextView date,name,saleqty,saleprice,recqty,recamt,orderid,itemprice;
+        TextView date,name,saleqty,saleprice,recqty,orderid,itemprice;
         public myviewholder(@NonNull View itemView) {
                 super(itemView);
 
@@ -62,7 +61,6 @@ public class InventoryLedgerAdapter extends RecyclerView.Adapter<InventoryLedger
             saleqty = itemView.findViewById(R.id.saleqty);
             saleprice = itemView.findViewById(R.id.saleprice);
             recqty = itemView.findViewById(R.id.recievedqty);
-            recamt = itemView.findViewById(R.id.receivedamount);
             orderid = itemView.findViewById(R.id.orderid);
             itemprice = itemView.findViewById(R.id.itemprice);
 

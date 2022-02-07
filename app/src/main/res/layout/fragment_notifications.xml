@@ -128,16 +128,6 @@
                             android:layout_alignParentStart="true"
                             android:background="@color/grey"
                             android:layout_margin="@dimen/_1sdp"
-                            android:text="Received Amt."
-                            android:textAlignment="center"
-                            android:textColor="#27AE60"
-                            android:textSize="@dimen/_16ssp" />
-                        <TextView
-                            android:layout_width="@dimen/_70sdp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:background="@color/grey"
-                            android:layout_margin="@dimen/_1sdp"
                             android:text="Sale price"
                             android:textAlignment="center"
                             android:textColor="#27AE60"

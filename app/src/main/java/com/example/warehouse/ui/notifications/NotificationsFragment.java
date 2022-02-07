@@ -6,14 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +21,6 @@ import com.example.warehouse.Singleton;
 import com.example.warehouse.UserInfo;
 import com.example.warehouse.Utils;
 import com.example.warehouse.adapters.InventoryLedgerAdapter;
-import com.example.warehouse.databinding.FragmentNotificationsBinding;
 import com.example.warehouse.model.InventoryLedgerModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -107,11 +101,10 @@ public class NotificationsFragment extends Fragment {
                                     String sale_price = server_responce.getString("sale_price");
                                     String product_name = server_responce.getString("product_name");
                                     String vendorid = server_responce.getString("vendor_id");
-                                    String received_amount = server_responce.getString("received_amount");
 
 
                                     InventoryLedgerModel model = new InventoryLedgerModel(id,date,orderid,product_name,sale_price,
-                                            sale_quantity,received_quantity,received_amount,product_price);
+                                            sale_quantity,received_quantity,"0",product_price);
                                     list.add(model);
 
 
