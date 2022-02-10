@@ -93,57 +93,42 @@ ProgressDialog progressDialog;
                         try {
                             JSONObject jObj = new JSONObject(response);
                             boolean error = jObj.getBoolean("error");
-                            String error_msg = jObj.getString("msg");
-                            String id = jObj.getString("id");
-                            String pass = jObj.getString("pass");
-
-
-                            UserInfo info = new UserInfo(getApplicationContext());
-
-                            userSession.setLoggedin(true);
-                            info.setId(id);
-                            info.setPass(pass);
-
 
 
                             if (!error) {
 
-                                progressDialog.hide();
+                                progressDialog.dismiss();
+                                String error_msg = jObj.getString("msg");
+                                String id = jObj.getString("id");
+                                String pass = jObj.getString("pass");
 
-                                Toast.makeText(getApplicationContext(), error_msg, Toast.LENGTH_SHORT).show();
+                                UserInfo info = new UserInfo(getApplicationContext());
 
-                                if (error_msg.equals("User Exist")) {
+                                userSession.setLoggedin(true);
+                                info.setId(id);
 
-                                    progressDialog.dismiss();
-
-
-                                } else {
-
-                                    progressDialog.dismiss();
+                                info.setPass(pass);
 
 
-                                    Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
 
-                                }
+                                Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                finish();
 
 
                             } else {
                                 // Error in login. Get the error message
-                                progressDialog.hide();
-
-                                Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Your Account Has Not Been Approved" , Toast.LENGTH_SHORT).show();
 
                             }
                         } catch (JSONException e) {
-                            progressDialog.hide();
+                            progressDialog.dismiss();
                             // JSON error
                             e.printStackTrace();
-
-
                             Toast.makeText(getApplicationContext(), "Incorrect Phone Or Password Try Again", Toast.LENGTH_SHORT).show();
+
                         }
 
 
@@ -151,10 +136,10 @@ ProgressDialog progressDialog;
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.hide();
+                        progressDialog.dismiss();
                         //Log.e(TAG, "Login Error: " + error.getMessage());
 
-                        Toast.makeText(getApplicationContext(),"Internet error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Internet Error", Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -181,6 +166,8 @@ ProgressDialog progressDialog;
 
                 };
 
+                // Adding request to request queue
+                Singleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
                 // Adding request to request queue
                 Singleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
             }
@@ -210,7 +197,7 @@ ProgressDialog progressDialog;
             }
         });
     }
-    public void checkstatus(String ids,String passes){
+    public void checkstatus(String ids, String passes){
         progressDialog.show();
 
 
@@ -231,9 +218,9 @@ ProgressDialog progressDialog;
                     if (!error) {
                         String id = jObj.getString("status");
                         String pass2 = jObj.getString("pass");
+
                         if (id.equals("Active")) {
                             if (passes.equals(pass2)) {
-
 
                                 progressDialog.dismiss();
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -268,7 +255,6 @@ ProgressDialog progressDialog;
                 } catch (JSONException e) {
                     progressDialog.dismiss();
                     // JSON error
-                    e.printStackTrace();
 
                     //Toast.makeText(getApplicationContext(), "Incorrect Phone Or Password Try Again", Toast.LENGTH_SHORT).show();
                 }
@@ -281,7 +267,7 @@ ProgressDialog progressDialog;
                 progressDialog.hide();
                 //Log.e(TAG, "Login Error: " + error.getMessage());
 
-                 Toast.makeText(getApplicationContext(),"Internet Issue", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Internet error", Toast.LENGTH_SHORT).show();
 
 
             }

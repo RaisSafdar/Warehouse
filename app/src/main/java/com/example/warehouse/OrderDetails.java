@@ -40,6 +40,7 @@ public class OrderDetails extends AppCompatActivity {
     List<OrderDetailModel> list;
     UserInfo userInfo;
     AlertDialog.Builder builder;
+    AlertDialog.Builder builder2;
     String user_id,ordrid,status;
     ProgressDialog progressDialog;
     TextView Total,ready,city,items,qtty;
@@ -51,6 +52,7 @@ public class OrderDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_orders);
         builder = new AlertDialog.Builder(this);
+        builder2 = new AlertDialog.Builder(this);
         city = findViewById(R.id.citytv);
         progressDialog = new ProgressDialog(OrderDetails.this);
         progressDialog.setMessage("Loading...Please wait");
@@ -63,6 +65,7 @@ public class OrderDetails extends AppCompatActivity {
         recyclerView = findViewById(R.id.rviewmyorders1);
         items = findViewById(R.id.itemstv);
         qtty = findViewById(R.id.qttytv);
+        Total = findViewById(R.id.deliverycharges);
 
         viewModel = new ViewModelProvider(this).get(QuantityViewModel.class);
         LiveData<Integer> liveData = viewModel.getCounter(this,ordrid);
@@ -75,13 +78,22 @@ public class OrderDetails extends AppCompatActivity {
             }
         });
 
+        viewModel = new ViewModelProvider(this).get(QuantityViewModel.class);
+        LiveData<String> liveData1 = viewModel.getTotal(this,ordrid);
+        liveData1.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String ss) {
+                Total.setText(String.valueOf(ss));
+            }
+        });
+
         ready = findViewById(R.id.cout);
         if (status.equals("Pending")){
             ready.setVisibility(View.VISIBLE);
         }else {
             ready.setVisibility(View.GONE);
         }
-        Total = findViewById(R.id.deliverycharges);
+
         list = new ArrayList<>();
 
         userInfo = new UserInfo(getApplicationContext());
@@ -127,13 +139,7 @@ public class OrderDetails extends AppCompatActivity {
 
                                 } else {
                                     progressDialog.dismiss();
-                                    int x = jsonArray.length()-1;
 
-                                    if (i==x){
-                                        String quantity  = server_responce.getString("qty");
-
-
-                                    }
 
 
 
@@ -159,7 +165,8 @@ public class OrderDetails extends AppCompatActivity {
                                 }
 
                             }
-                            adapter=new OrderDetailAdapter(list,getApplicationContext(),Total,OrderDetails.this);
+                            adapter=new OrderDetailAdapter(list,getApplicationContext(),
+                                    Total,OrderDetails.this,builder2);
 
                             recyclerView.setAdapter(adapter);
                             String itemsa = String.valueOf(recyclerView.getAdapter().getItemCount());

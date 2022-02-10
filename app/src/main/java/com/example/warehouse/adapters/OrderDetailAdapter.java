@@ -1,11 +1,16 @@
 package com.example.warehouse.adapters;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,15 +47,17 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     int all_total=0;
     String id,s1;
     QuantityViewModel viewModel;
+    AlertDialog.Builder builder;
 
 
 
 
 
-    public OrderDetailAdapter(List<OrderDetailModel> list, Context context, TextView textView, Activity activity) {
+    public OrderDetailAdapter(List<OrderDetailModel> list, Context context, TextView textView, Activity activity, AlertDialog.Builder builder) {
         this.list = list;
         this.context = context;
         this.textView = textView;
+        this.builder = builder;
 
         viewModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(QuantityViewModel.class);
 
@@ -90,114 +97,217 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         holder.dec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int q1 = Integer.parseInt(holder.qnty.getText().toString());
-                if (q1 <= 0) {
-                    Toast.makeText(context, "Can't decrease further", Toast.LENGTH_SHORT).show();
-                } else {
-                    holder.pid = orderDetailModel.getId();
 
-                    holder.increment = holder.qnty.getText().toString();
+                holder.pid = orderDetailModel.getId();
 
+                final EditText edittext = new EditText(context);
+                edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
+                builder.setMessage("Enter Your Quantity");
 
-                    int newVersion = Integer.parseInt(holder.increment) - 1;
-                    holder.completeNewVersion = String.valueOf(newVersion);
-                    holder.qnty.setText(holder.completeNewVersion);
-                    Log.d("TAG1", "onClick: " + id + " " + holder.qnty.getText());
+                builder.setTitle("Quantity");
+                builder.setView(edittext);
+                edittext.setText(holder.qnty.getText().toString());
 
-
-                    holder.total = Integer.parseInt(orderDetailModel.getPurchase_price());
+                builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
 
-                    all_total = Integer.parseInt(textView.getText().toString());
-                    all_total = all_total - holder.total;
-                    textView.setText(String.valueOf(all_total));
+                        if (TextUtils.isEmpty(edittext.getText().toString())){
+                            edittext.setError("Please Enter Quantity");
+                            // Toast.makeText(context, "Please Enter Quantity", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        int q1 = Integer.parseInt(holder.qnty.getText().toString());
+                        int q2 = Integer.parseInt(edittext.getText().toString());
 
-
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-
-
-                            StringRequest stringRequest = new StringRequest(Request.Method.POST,
-
-
-                                    Utils.inc_dec, new Response.Listener<String>() {
-
-
+                        if (q2 <= 0) {
+                            holder.qnty.setText("0");
+                            orderDetailModel.setQuantity("0");
+                            notifyDataSetChanged();
+                            new Thread(new Runnable() {
                                 @Override
-                                public void onResponse(String response) {
-                                    Log.d("testerror", response);
-                                    try {
-                                        JSONObject jObj = new JSONObject(response);
-                                        boolean error = jObj.getBoolean("error");
-                                        String error_msg = jObj.getString("msg");
+                                public void run() {
 
 
-                                        if (!error) {
-                                           viewModel.loadData(context, orderDetailModel.getOrder_id());
+                                    StringRequest stringRequest = new StringRequest(Request.Method.POST,
+
+
+                                            Utils.inc_dec, new Response.Listener<String>() {
+
+
+                                        @Override
+                                        public void onResponse(String response) {
+                                            Log.d("testerror", response);
+                                            try {
+                                                JSONObject jObj = new JSONObject(response);
+                                                boolean error = jObj.getBoolean("error");
+                                                String error_msg = jObj.getString("msg");
+
+
+                                                if (!error) {
+                                                    viewModel.loadData(context, orderDetailModel.getOrder_id());
 
 //                                            Toast.makeText(context, error_msg, Toast.LENGTH_LONG).show();
 
 
-                                        } else {
-                                            // Error in login. Get the error message
+                                                } else {
+
+                                                    Toast.makeText(context, "Quantity Decreasing Failed", Toast.LENGTH_SHORT).show();
+
+                                                }
+                                            } catch (JSONException e) {
+                                                // JSON error
+                                                e.printStackTrace();
 
 
-                                            Toast.makeText(context, "Quantity Decreasing Failed", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(context, "Internet Error", Toast.LENGTH_SHORT).show();
+                                            }
+
 
                                         }
-                                    } catch (JSONException e) {
-                                        // JSON error
-                                        e.printStackTrace();
+                                    }, new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Toast.makeText(context, "Internet Error", Toast.LENGTH_SHORT).show();
+                                            //Log.e(TAG, "Login Error: " + error.getMessage());
 
 
-                                        Toast.makeText(context, "Internet Error", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }) {
+
+                                        @Override
+                                        protected Map<String, String> getParams() {
+
+
+                                            // Posting parameters to login url
+
+
+                                            Map<String, String> params = new HashMap<>();
+
+                                            params.put("order_id", orderDetailModel.getOrder_id());
+                                            params.put("product_quantity", "0");
+                                            params.put("product_id", holder.pid);
+
+
+                                            return params;
+
+
+                                        }
+
+                                    };
+
+                                    // Adding request to request queue
+                                    Singleton.getInstance(context).addToRequestQueue(stringRequest);
+                                }
+                            }).start();
+                        } else {
+
+
+                            if (Integer.parseInt(edittext.getText().toString())<q1) {
+
+
+                                orderDetailModel.setQuantity(String.valueOf(q2));
+                                holder.qnty.setText(String.valueOf(q2));
+                                notifyDataSetChanged();
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+
+                                        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+
+
+                                                Utils.inc_dec, new Response.Listener<String>() {
+
+
+                                            @Override
+                                            public void onResponse(String response) {
+                                                Log.d("testerror", response);
+                                                try {
+                                                    JSONObject jObj = new JSONObject(response);
+                                                    boolean error = jObj.getBoolean("error");
+                                                    String error_msg = jObj.getString("msg");
+
+
+                                                    if (!error) {
+                                                        viewModel.loadData(context, orderDetailModel.getOrder_id());
+
+//                                            Toast.makeText(context, error_msg, Toast.LENGTH_LONG).show();
+
+
+                                                    } else {
+
+                                                        Toast.makeText(context, "Quantity Decreasing Failed", Toast.LENGTH_SHORT).show();
+
+                                                    }
+                                                } catch (JSONException e) {
+                                                    // JSON error
+                                                    e.printStackTrace();
+
+
+                                                    Toast.makeText(context, "Internet Error", Toast.LENGTH_SHORT).show();
+                                                }
+
+
+                                            }
+                                        }, new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Toast.makeText(context, "Internet Error", Toast.LENGTH_SHORT).show();
+                                                //Log.e(TAG, "Login Error: " + error.getMessage());
+
+
+                                            }
+                                        }) {
+
+                                            @Override
+                                            protected Map<String, String> getParams() {
+
+
+                                                // Posting parameters to login url
+
+
+                                                Map<String, String> params = new HashMap<>();
+
+                                                params.put("order_id", orderDetailModel.getOrder_id());
+                                                params.put("product_quantity", holder.qnty.getText().toString());
+                                                params.put("product_id", holder.pid);
+
+
+                                                return params;
+
+
+                                            }
+
+                                        };
+
+                                        // Adding request to request queue
+                                        Singleton.getInstance(context).addToRequestQueue(stringRequest);
+
                                     }
+                                }).start();
+                            } else {
+                                Toast.makeText(context, "Value is Greater Than Original Quantity", Toast.LENGTH_SHORT).show();
+                            }
 
-
-                                }
-                            }, new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    //Log.e(TAG, "Login Error: " + error.getMessage());
-                                    Toast.makeText(context, "Internet Issue", Toast.LENGTH_SHORT).show();
-
-
-                                }
-                            }) {
-
-                                @Override
-                                protected Map<String, String> getParams() {
-
-
-                                    // Posting parameters to login url
-
-
-                                    Map<String, String> params = new HashMap<>();
-
-                                    params.put("order_id", orderDetailModel.getOrder_id());
-                                    params.put("product_quantity", holder.qnty.getText().toString());
-                                    params.put("product_id", holder.pid);
-
-
-                                    return params;
-
-
-                                }
-
-                            };
-
-                            // Adding request to request queue
-                            Singleton.getInstance(context).addToRequestQueue(stringRequest);
 
                         }
-                    }).start();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
 
 
-                }
+
+
             }
         });
-
 
 
 

@@ -1,5 +1,6 @@
 package com.example.warehouse;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -24,8 +25,10 @@ public class QuantityViewModel extends ViewModel {
     UserInfo userInfo;
     JSONObject server_responce;
     private MutableLiveData<Integer> qty;
-    String user_id;
+    private MutableLiveData<String> total;
+    String user_id,totals;
     int cartcount;
+    ProgressDialog progressDialog;
 
     public MutableLiveData<Integer> getCounter(Context c, String oid){
         if (qty == null){
@@ -36,6 +39,21 @@ public class QuantityViewModel extends ViewModel {
 
 
     }
+    public MutableLiveData<String> getTotal(Context c,String oid) {
+        progressDialog = new ProgressDialog(c);
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Please Wait");
+        progressDialog.setCanceledOnTouchOutside(false);
+
+        if (total == null) {
+            total = new MutableLiveData<>();
+
+            loadData(c,oid);
+
+        }
+        return total;
+    }
+
 
     public void loadData(Context c , String oid) {
         StringRequest postRequest = new StringRequest(Request.Method.POST, Utils.OrderDetails,
@@ -73,7 +91,8 @@ public class QuantityViewModel extends ViewModel {
 
 
                                 } else {
-
+                                    totals = server_responce.getString("total");
+                                    total.setValue(totals);
                                     int x = jsonArray.length()-1;
 
                                     if (i==x){

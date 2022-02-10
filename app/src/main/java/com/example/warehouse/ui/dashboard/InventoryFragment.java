@@ -60,6 +60,7 @@ public class InventoryFragment extends Fragment {
         list = new ArrayList<>();
         userInfo = new UserInfo(getActivity());
         user_id = userInfo.getKeyId();
+        Toast.makeText(getActivity(), ""+user_id, Toast.LENGTH_SHORT).show();
 
 
 
