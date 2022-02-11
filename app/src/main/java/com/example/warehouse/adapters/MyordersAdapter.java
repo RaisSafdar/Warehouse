@@ -12,8 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.warehouse.OrderDetails;
 import com.example.warehouse.R;
+import com.example.warehouse.VendorsInOrders;
+import com.example.warehouse.VendorsTab;
 import com.example.warehouse.model.MyOrdersModel;
 
 import java.util.List;
@@ -60,7 +61,7 @@ public class MyordersAdapter extends RecyclerView.Adapter<MyordersAdapter.myview
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, OrderDetails.class);
+                Intent intent = new Intent(context, VendorsTab.class);
                 intent.putExtra("ordrid",holder.t2.getText());
                 intent.putExtra("status",holder.t3.getText());
                 intent.putExtra("city",city);

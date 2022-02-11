@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Warehouse">
         <activity
+            android:name=".VendorsTab"
+            android:exported="true" />
+        <activity
             android:name=".OrderHistory"
             android:exported="true" />
         <activity
@@ -20,6 +23,9 @@
             android:exported="true" />
         <activity
             android:name=".ContactUs"
+            android:exported="true" />
+        <activity
+            android:name=".VendorsInOrders"
             android:exported="true" />
         <activity
             android:name=".AccountInformation"

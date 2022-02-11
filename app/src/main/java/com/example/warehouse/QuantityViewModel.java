@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -30,16 +31,19 @@ public class QuantityViewModel extends ViewModel {
     int cartcount;
     ProgressDialog progressDialog;
 
-    public MutableLiveData<Integer> getCounter(Context c, String oid){
+
+    public MutableLiveData<Integer> getCounter(Context c, String oid, String vid){
+
         if (qty == null){
             qty = new MutableLiveData<>();
-            loadData(c,oid);
+            loadData(c,oid,vid);
         }
         return qty;
 
 
     }
-    public MutableLiveData<String> getTotal(Context c,String oid) {
+
+    public MutableLiveData<String> getTotal(Context c,String oid,  String vid) {
         progressDialog = new ProgressDialog(c);
         progressDialog.setTitle("Loading");
         progressDialog.setMessage("Please Wait");
@@ -47,15 +51,14 @@ public class QuantityViewModel extends ViewModel {
 
         if (total == null) {
             total = new MutableLiveData<>();
-
-            loadData(c,oid);
+            loadData(c,oid,vid);
 
         }
         return total;
     }
 
 
-    public void loadData(Context c , String oid) {
+    public void loadData(Context c , String oid, String vid) {
         StringRequest postRequest = new StringRequest(Request.Method.POST, Utils.OrderDetails,
                 new Response.Listener<String>()
                 {
@@ -88,21 +91,24 @@ public class QuantityViewModel extends ViewModel {
                                 if (error) {
 
 
-
+                                    // Toast.makeText(c.getApplicationContext(), ""+error, Toast.LENGTH_SHORT).show();
 
                                 } else {
                                     totals = server_responce.getString("total");
                                     total.setValue(totals);
-                                    int x = jsonArray.length()-1;
 
-                                    if (i==x){
+
+                                    int x = jsonArray.length() - 1;
+
+                                    if (i == x) {
                                         cartcount = server_responce.getInt("qty");
-                                        Log.d("ccc", "onResponse: "+cartcount);
+                                        Log.d("ccc", "onResponse: " + cartcount);
 
 
                                     }
                                     qty.setValue(cartcount);
                                 }
+
 
                             }
                         } catch (JSONException e) {
@@ -120,7 +126,7 @@ public class QuantityViewModel extends ViewModel {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response1", error.getMessage());
-                        Toast.makeText(c, "Internet Issue", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(c, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         ) {
@@ -134,6 +140,7 @@ public class QuantityViewModel extends ViewModel {
                 user_id = userInfo.getKeyId();
                 params.put("order_id", oid);
                 params.put("warehouse_id", user_id);
+                params.put("vendor_id", vid);
                 return params;
 
 

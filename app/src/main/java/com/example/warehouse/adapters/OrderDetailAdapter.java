@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +32,7 @@ import com.example.warehouse.R;
 import com.example.warehouse.Singleton;
 import com.example.warehouse.UserInfo;
 import com.example.warehouse.Utils;
+import com.example.warehouse.VendorNames;
 import com.example.warehouse.model.OrderDetailModel;
 
 import org.json.JSONException;
@@ -45,19 +47,23 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     Context context;
     TextView textView,textView1;
     int all_total=0;
-    String id,s1;
+    String vid,s1;
     QuantityViewModel viewModel;
     AlertDialog.Builder builder;
+    FragmentActivity activity;
 
 
 
 
 
-    public OrderDetailAdapter(List<OrderDetailModel> list, Context context, TextView textView, Activity activity, AlertDialog.Builder builder) {
+    public OrderDetailAdapter(List<OrderDetailModel> list, Context context, TextView textView,
+                              FragmentActivity activity, AlertDialog.Builder builder, String vid) {
         this.list = list;
         this.context = context;
         this.textView = textView;
         this.builder = builder;
+        this.vid = vid;
+        this.activity = activity;
 
         viewModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(QuantityViewModel.class);
 
@@ -74,7 +80,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
 
-       // QuantityViewModel viewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(QuantityViewModel.class);
+      //  QuantityViewModel viewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(QuantityViewModel.class);
         OrderDetailModel orderDetailModel = list.get(position);
         holder.image = orderDetailModel.getProduct_image().toString();
 
@@ -146,9 +152,8 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
 
                                                 if (!error) {
-                                                    viewModel.loadData(context, orderDetailModel.getOrder_id());
+                                                    viewModel.loadData(context, orderDetailModel.getOrder_id(),vid);
 
-//                                            Toast.makeText(context, error_msg, Toast.LENGTH_LONG).show();
 
 
                                                 } else {
@@ -231,9 +236,9 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
 
                                                     if (!error) {
-                                                        viewModel.loadData(context, orderDetailModel.getOrder_id());
+                                                       viewModel.loadData(context, orderDetailModel.getOrder_id(),vid);
 
-//                                            Toast.makeText(context, error_msg, Toast.LENGTH_LONG).show();
+                                            //  Toast.makeText(context, holder.qnty.getText().toString(), Toast.LENGTH_LONG).show();
 
 
                                                     } else {
