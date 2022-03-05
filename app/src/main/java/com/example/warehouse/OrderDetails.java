@@ -2,6 +2,7 @@ package com.example.warehouse;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,6 +48,7 @@ public class OrderDetails extends AppCompatActivity {
 //    QuantityViewModel viewModel;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,25 +68,25 @@ public class OrderDetails extends AppCompatActivity {
 //        qtty = findViewById(R.id.qttytv);
 //        Total = findViewById(R.id.deliverycharges);
 //
-////        viewModel = new ViewModelProvider(this).get(QuantityViewModel.class);
-////        LiveData<Integer> liveData = viewModel.getCounter(this,ordrid);
-////        liveData.observe(this, new Observer<Integer>() {
-////            @Override
-////            public void onChanged(Integer ss) {
-////                qtty.setText(String.valueOf(ss));
-////             //viewModel.loadData(getApplicationContext(),ordrid);
-////                Log.d("sdsdadf", "onChanged: "+ss);
-////            }
-////        });
-////
-////        viewModel = new ViewModelProvider(this).get(QuantityViewModel.class);
-////        LiveData<String> liveData1 = viewModel.getTotal(this,ordrid);
-////        liveData1.observe(this, new Observer<String>() {
-////            @Override
-////            public void onChanged(String ss) {
-////                Total.setText(String.valueOf(ss));
-////            }
-////        });
+//        viewModel = new ViewModelProvider(this).get(QuantityViewModel.class);
+//        LiveData<Integer> liveData = viewModel.getCounter(this,ordrid,vendorid);
+//        liveData.observe(this, new Observer<Integer>() {
+//            @Override
+//            public void onChanged(Integer ss) {
+//                qtty.setText(String.valueOf(ss));
+//             //viewModel.loadData(getApplicationContext(),ordrid);
+//                Log.d("sdsdadf", "onChanged: "+ss);
+//            }
+//        });
+//
+//        viewModel = new ViewModelProvider(this).get(QuantityViewModel.class);
+//        LiveData<String> liveData1 = viewModel.getTotal(this,ordrid,vendorid);
+//        liveData1.observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(String ss) {
+//                Total.setText(String.valueOf(ss));
+//            }
+//        });
 //
 //        ready = findViewById(R.id.cout);
 //        if (status.equals("Pending")){

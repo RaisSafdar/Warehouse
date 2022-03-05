@@ -3,6 +3,7 @@ package com.example.warehouse;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
@@ -20,6 +21,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class QuantityViewModel extends ViewModel {
 
@@ -27,38 +29,39 @@ public class QuantityViewModel extends ViewModel {
     JSONObject server_responce;
     private MutableLiveData<Integer> qty;
     private MutableLiveData<String> total;
-    String user_id,totals;
+    private MutableLiveData<String> status;
+    String user_id, totals,statuses;
     int cartcount;
     ProgressDialog progressDialog;
 
-
-    public MutableLiveData<Integer> getCounter(Context c, String oid, String vid){
-
+    public MutableLiveData<Integer> getCounter(Context c, String oid, String vid, TextView total,TextView qttys){
         if (qty == null){
             qty = new MutableLiveData<>();
-            loadData(c,oid,vid);
+            loadData(c,oid,vid,total,qttys);
         }
         return qty;
 
 
     }
 
-    public MutableLiveData<String> getTotal(Context c,String oid,  String vid) {
+    public MutableLiveData<String> getTotal(Context c, String oid, String vid, TextView total,TextView qttys) {
         progressDialog = new ProgressDialog(c);
         progressDialog.setTitle("Loading");
         progressDialog.setMessage("Please Wait");
         progressDialog.setCanceledOnTouchOutside(false);
 
-        if (total == null) {
-            total = new MutableLiveData<>();
-            loadData(c,oid,vid);
+        if (this.total == null) {
+            this.total = new MutableLiveData<>();
+
+            loadData(c,oid,vid,total,qttys);
 
         }
-        return total;
+        return this.total;
     }
 
 
-    public void loadData(Context c , String oid, String vid) {
+
+    public void loadData(Context c , String oid, String vid, TextView textView,TextView qttys) {
         StringRequest postRequest = new StringRequest(Request.Method.POST, Utils.OrderDetails,
                 new Response.Listener<String>()
                 {
@@ -90,25 +93,34 @@ public class QuantityViewModel extends ViewModel {
 
                                 if (error) {
 
+                                    Toast.makeText(c.getApplicationContext(), ""+vid, Toast.LENGTH_SHORT).show();
 
-                                    // Toast.makeText(c.getApplicationContext(), ""+error, Toast.LENGTH_SHORT).show();
 
                                 } else {
-                                    totals = server_responce.getString("total");
-                                    total.setValue(totals);
+
+                                   String totals = server_responce.getString("total");
 
 
-                                    int x = jsonArray.length() - 1;
 
-                                    if (i == x) {
-                                        cartcount = server_responce.getInt("qty");
-                                        Log.d("ccc", "onResponse: " + cartcount);
+                                  //  total.setValue(totals);
+//                                    VendorNames vendorNames = new VendorNames(vid,oid,status,c);
+//                                    vendorNames.Total.setText(totals);
+                                    textView.setText(totals);
 
+
+
+                                    int x = jsonArray.length()-1;
+
+                                    if (i==x){
+                                     int cartcount = server_responce.getInt("qty");
+                                        Log.d("ccc", "onResponse: "+cartcount);
+
+                                        qttys.setText(String.valueOf(cartcount));
 
                                     }
-                                    qty.setValue(cartcount);
-                                }
 
+                                    //qty.setValue(cartcount);
+                                }
 
                             }
                         } catch (JSONException e) {
@@ -126,7 +138,6 @@ public class QuantityViewModel extends ViewModel {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response1", error.getMessage());
-                        Toast.makeText(c, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         ) {
@@ -139,8 +150,8 @@ public class QuantityViewModel extends ViewModel {
                 userInfo = new UserInfo(c);
                 user_id = userInfo.getKeyId();
                 params.put("order_id", oid);
-                params.put("warehouse_id", user_id);
                 params.put("vendor_id", vid);
+                params.put("warehouse_id", user_id);
                 return params;
 
 

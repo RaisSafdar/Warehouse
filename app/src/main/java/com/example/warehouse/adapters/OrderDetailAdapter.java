@@ -47,7 +47,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     Context context;
     TextView textView,textView1;
     int all_total=0;
-    String vid,s1;
+    String vid,s1,strttl;
     QuantityViewModel viewModel;
     AlertDialog.Builder builder;
     FragmentActivity activity;
@@ -57,13 +57,15 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
 
     public OrderDetailAdapter(List<OrderDetailModel> list, Context context, TextView textView,
-                              FragmentActivity activity, AlertDialog.Builder builder, String vid) {
+                              FragmentActivity activity, AlertDialog.Builder builder, String vid, TextView qttys) {
         this.list = list;
         this.context = context;
         this.textView = textView;
         this.builder = builder;
         this.vid = vid;
         this.activity = activity;
+        this.textView1 = qttys;
+
 
         viewModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(QuantityViewModel.class);
 
@@ -152,7 +154,8 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
 
                                                 if (!error) {
-                                                    viewModel.loadData(context, orderDetailModel.getOrder_id(),vid);
+                                                    viewModel.loadData(context, orderDetailModel.getOrder_id()
+                                                            ,vid,textView,textView1);
 
 
 
@@ -236,7 +239,8 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
 
                                                     if (!error) {
-                                                       viewModel.loadData(context, orderDetailModel.getOrder_id(),vid);
+                                                       viewModel.loadData(context, orderDetailModel.getOrder_id(),
+                                                               vid,textView,textView1);
 
                                             //  Toast.makeText(context, holder.qnty.getText().toString(), Toast.LENGTH_LONG).show();
 

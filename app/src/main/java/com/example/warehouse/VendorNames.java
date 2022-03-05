@@ -10,6 +10,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -54,6 +56,7 @@ public class VendorNames extends Fragment {
     TextView Total,ready,city,items,qttys;
     QuantityViewModel viewModel;
     Context context;
+    FragmentManager fragmentManager;
 
 
 
@@ -84,26 +87,38 @@ public class VendorNames extends Fragment {
         items = view.findViewById(R.id.itemstv);
         qttys = view.findViewById(R.id.qttytv);
         Total = view.findViewById(R.id.deliverycharges);
+        fragmentManager = getChildFragmentManager();
+
+
+
 
         viewModel = new ViewModelProvider(this).get(QuantityViewModel.class);
-        LiveData<Integer> liveData = viewModel.getCounter(getActivity(),ordrid,vid);
+
+        viewModel.loadData(getActivity(),ordrid,vid,Total,qttys);
+
+        LiveData<Integer> liveData = viewModel.getCounter(getActivity(),ordrid,vid,Total,qttys);
         liveData.observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer ss) {
-                qttys.setText(String.valueOf(ss));
-                //viewModel.loadData(getApplicationContext(),ordrid);
+             //   qttys.setText(String.valueOf(ss));
+               // viewModel.loadData(getApplicationContext(),ordrid);
                 Log.d("sdsdadf", "onChanged: "+ss);
             }
         });
 
         viewModel = new ViewModelProvider(this).get(QuantityViewModel.class);
-        LiveData<String> liveData1 = viewModel.getTotal(getActivity(),ordrid,vid);
+        LiveData<String> liveData1 = viewModel.getTotal(getActivity(),ordrid,vid,Total,qttys);
         liveData1.observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String ss1) {
-                Total.setText(String.valueOf(ss1));
+               // Total.setText(String.valueOf(ss1));
             }
         });
+
+
+
+
+
 
 
 
@@ -172,6 +187,8 @@ public class VendorNames extends Fragment {
                                     Total.setText(total);
                                     String purchase_price = server_responce.getString("purchase_price");
                                     String quantity = server_responce.getString("quantity");
+                                    String qty = server_responce.getString("qty");
+                                    qttys.setText(qty);
 
                                     String product_images = Utils.PimageUrl + product_image;
 
@@ -187,7 +204,7 @@ public class VendorNames extends Fragment {
 
                             }
                             adapter=new OrderDetailAdapter(list,getActivity(),
-                                    Total,getActivity(),builder2,vid);
+                                    Total,getActivity(),builder2,vid,qttys);
 
                             recyclerView.setAdapter(adapter);
                             String itemsa = String.valueOf(recyclerView.getAdapter().getItemCount());
@@ -258,10 +275,10 @@ public class VendorNames extends Fragment {
 
                                         progressDialog.hide();
 
-                                        Toast.makeText(getActivity(),error_msg,Toast.LENGTH_SHORT).show();
-                                        Intent intent1 = new Intent(getActivity(),MainActivity.class);
-                                        startActivity(intent1);
-                                        getActivity().finish();
+
+
+                                        Toast.makeText(getActivity(),"Order Ready",Toast.LENGTH_SHORT).show();
+                                        ready.setVisibility(View.GONE);
 
 
                                     }else {
@@ -306,6 +323,7 @@ public class VendorNames extends Fragment {
 
                                 params.put("order_id", ordrid);
                                 params.put("warehouse_id", user_id);
+                                params.put("vendor_id", vid);
                                 String ttl = Total.getText().toString();
                                 params.put("totalrupees", ttl);
                                 Log.d("ttl", "getParams: "+ttl);

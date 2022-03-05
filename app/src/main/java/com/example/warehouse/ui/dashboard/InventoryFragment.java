@@ -1,5 +1,7 @@
 package com.example.warehouse.ui.dashboard;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,6 +50,7 @@ public class InventoryFragment extends Fragment {
     UserInfo userInfo;
     String user_id,name,vendor_id;
     ProgressDialog progressDialog;
+    Dialog builder;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,7 +63,7 @@ public class InventoryFragment extends Fragment {
         list = new ArrayList<>();
         userInfo = new UserInfo(getActivity());
         user_id = userInfo.getKeyId();
-        Toast.makeText(getActivity(), ""+user_id, Toast.LENGTH_SHORT).show();
+        builder = new Dialog(getActivity());
 
 
 
@@ -120,7 +123,7 @@ public class InventoryFragment extends Fragment {
                                 }
 
                             }
-                            adapter=new VendorAdapter(list,getActivity());
+                            adapter=new VendorAdapter(list,getActivity(),builder);
 
                             recyclerView.setAdapter(adapter);
 

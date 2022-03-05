@@ -38,7 +38,7 @@ public class VendorsTab extends AppCompatActivity {
     JSONObject server_responce;
     ViewPagerAdapter adapter1;
     ProgressDialog progressDialog;
-    String vendorname,status;
+    String vendorname,status,vendorstatus;
     String user_id,orderid,vid,qtty,Total;
     UserInfo userInfo;
     ArrayList<VendorsModel> catlist;
@@ -65,33 +65,6 @@ public class VendorsTab extends AppCompatActivity {
         user_id = userInfo.getKeyId();
 
         oid.setText(orderid);
-
-
-//        viewModel = new ViewModelProvider(this).get(QuantityViewModel.class);
-//        LiveData<Integer> liveData = viewModel.getCounter(this,orderid);
-//        liveData.observe(this, new Observer<Integer>() {
-//            @Override
-//            public void onChanged(Integer ss) {
-//               // qtty.setText(String.valueOf(ss));
-//                qtty = String.valueOf(ss);
-//                viewModel.loadData(getApplicationContext(),orderid);
-//                Log.d("sdsdadf", "onChanged: "+ss);
-//            }
-//        });
-//
-//        viewModel = new ViewModelProvider(this).get(QuantityViewModel.class);
-//        LiveData<String> liveData1 = viewModel.getTotal(this,orderid);
-//        liveData1.observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(String ss) {
-//                //Total.setText(String.valueOf(ss));
-//                Total = String.valueOf(ss);
-//                Toast.makeText(getApplicationContext(), ""+ss, Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-
-
 
         addTabs(viewPager);
 
@@ -137,9 +110,10 @@ public class VendorsTab extends AppCompatActivity {
 
                                     vendorname = server_responce.getString("vendor_code");
                                     vid = server_responce.getString("vendor_id");
+                                    vendorstatus = server_responce.getString("vendordelivery");
                                     tabLayout.addTab(tabLayout.newTab().setText(vendorname));
 
-                                    adapter1.addFrag(new VendorNames(vid,status,orderid,getApplicationContext()), vendorname);
+                                    adapter1.addFrag(new VendorNames(vid,vendorstatus,orderid,getApplicationContext()), vendorname);
                                 }
 
                             }

@@ -13,6 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Warehouse">
         <activity
+            android:name=".DateActivity"
+            android:exported="true" />
+        <activity
+            android:name=".WarehouseLedger"
+            android:exported="true" />
+        <activity
+            android:name=".VendorPurchaseHistory"
+            android:exported="true" />
+        <activity
+            android:name=".VendorLedger"
+            android:exported="true" />
+        <activity
             android:name=".VendorsTab"
             android:exported="true" />
         <activity

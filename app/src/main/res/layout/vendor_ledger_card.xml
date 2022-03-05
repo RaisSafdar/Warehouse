@@ -3,19 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:stretchColumns="1,2,3,4,5,6,7">
+    android:stretchColumns="1,2,3,4,5,6">
 
     <TableRow
         android:paddingTop="@dimen/_1sdp"
         >
 
 
+        <TextView
+            android:id="@+id/datetxt"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="dd-mm-yyy"
+            android:background="@color/grey"
+            android:layout_margin="@dimen/_1sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp"
+            android:singleLine="true"
+            />
 
         <TextView
-            android:id="@+id/pname"
-            android:layout_width="@dimen/_150sdp"
+            android:id="@+id/detailstxt"
+            android:layout_width="@dimen/_50sdp"
             android:layout_height="wrap_content"
-            android:text="pname"
+            android:text="Details"
             android:background="@color/grey"
             android:layout_margin="@dimen/_1sdp"
             android:textColor="@color/black"
@@ -25,23 +37,10 @@
             />
 
         <TextView
-            android:id="@+id/recievedqty"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="wrap_content"
-            android:text="recievedqty"
-            android:background="@color/grey"
-            android:layout_margin="@dimen/_1sdp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16ssp"
-            android:textAlignment="center"
-            android:singleLine="true"
-            />
-
-        <TextView
-            android:id="@+id/itemprice"
+            android:id="@+id/credittxt"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="wrap_content"
-            android:text="itemrice"
+            android:text="Creditsss"
             android:background="@color/grey"
             android:layout_margin="@dimen/_1sdp"
             android:textColor="@color/black"
@@ -49,11 +48,12 @@
             android:textAlignment="center"
             android:singleLine="true"
             />
+
         <TextView
-            android:id="@+id/saleprice"
+            android:id="@+id/debittxt"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="wrap_content"
-            android:text="saleprice"
+            android:text="Debit"
             android:background="@color/grey"
             android:layout_margin="@dimen/_1sdp"
             android:textColor="@color/black"
@@ -61,11 +61,6 @@
             android:textAlignment="center"
             android:singleLine="true"
             />
-
-
-
-
-
 
 
 

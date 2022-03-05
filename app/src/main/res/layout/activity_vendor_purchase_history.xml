@@ -6,9 +6,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/sign_in"
     >
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Vendor Name"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:id="@+id/ycompl"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ycompl"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Date"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:id="@+id/Date"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ycompl"
+        app:layout_constraintStart_toEndOf="@id/Date"
+        android:text="Date"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:id="@+id/Datetxt"/>
+
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,81 +68,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="PKWholesales"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:textSize="@dimen/_25ssp"
-        android:textColor="@color/green"
-        android:textStyle="bold"
-        android:id="@+id/ycompl"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/ycompl"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="Total Remaining Quantity"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:textSize="@dimen/_18ssp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:id="@+id/trq"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/ycompl"
-        app:layout_constraintStart_toEndOf="@id/trq"
-        android:text="Total Amount"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:textSize="@dimen/_18ssp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:id="@+id/tam"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/trq"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="fgfhthrth"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:textSize="@dimen/_18ssp"
-        android:textColor="@color/green"
-        app:layout_constraintEnd_toEndOf="@id/trq"
-
-        android:id="@+id/trqtxt"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tam"
-        app:layout_constraintStart_toStartOf="@id/tam"
-        app:layout_constraintEnd_toEndOf="@id/tam"
-        android:text="ghghgh"
-        android:textSize="@dimen/_18ssp"
-        android:textColor="@color/purple_700"
-
-        android:id="@+id/tamtxt"/>
-
-
-
-
-
-
-
-
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/tamtxt"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/tbl"
@@ -112,7 +82,6 @@
 
                         android:padding="@dimen/_1sdp"
                         >
-
 
                         <TextView
                             android:layout_width="@dimen/_150sdp"
@@ -126,12 +95,12 @@
                             android:textSize="@dimen/_16ssp" />
 
                         <TextView
-                            android:layout_width="@dimen/_130sdp"
+                            android:layout_width="@dimen/_80sdp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:background="@color/grey"
                             android:layout_margin="@dimen/_1sdp"
-                            android:text="Remaining qty"
+                            android:text="Received qty"
                             android:textAlignment="center"
                             android:textColor="#27AE60"
                             android:textSize="@dimen/_16ssp" />
@@ -156,6 +125,10 @@
                             android:textAlignment="center"
                             android:textColor="#27AE60"
                             android:textSize="@dimen/_16ssp" />
+
+
+
+
 
 
                     </TableRow>

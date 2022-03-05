@@ -1,11 +1,8 @@
 package com.example.warehouse.model;
 
-public class InventoryLedgerModel {
-    String id,product_name,sale_price
-            ,remaining,product_price;
-
-    public InventoryLedgerModel() {
-    }
+public class VendorInventoryLedgerModel {
+    String id,date,product_name,sale_price
+            ,received_quantity,product_price;
 
     public String getId() {
         return id;
@@ -13,6 +10,14 @@ public class InventoryLedgerModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getProduct_name() {
@@ -31,13 +36,14 @@ public class InventoryLedgerModel {
         this.sale_price = sale_price;
     }
 
-    public String getRemaining() {
-        return remaining;
+    public String getReceived_quantity() {
+        return received_quantity;
     }
 
-    public void setRemaining(String remaining) {
-        this.remaining = remaining;
+    public void setReceived_quantity(String received_quantity) {
+        this.received_quantity = received_quantity;
     }
+
 
     public String getProduct_price() {
         return product_price;
@@ -47,11 +53,16 @@ public class InventoryLedgerModel {
         this.product_price = product_price;
     }
 
-    public InventoryLedgerModel(String id, String product_name, String sale_price, String remaining, String product_price) {
+    public VendorInventoryLedgerModel(String id, String date, String product_name, String sale_price,
+                                      String received_quantity, String product_price) {
         this.id = id;
+        this.date = date;
         this.product_name = product_name;
         this.sale_price = sale_price;
-        this.remaining = remaining;
+        this.received_quantity = received_quantity;
         this.product_price = product_price;
+    }
+
+    public VendorInventoryLedgerModel() {
     }
 }
