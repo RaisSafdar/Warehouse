@@ -33,6 +33,7 @@ import java.util.Map;
 public class VendorPurchaseHistory extends AppCompatActivity {
     RecyclerView recyclerView;
     JSONObject server_responce;
+    JSONObject server_responce1;
     VendorInventoryLedgerAdapter adapter;
     List<VendorInventoryLedgerModel> list;
     ProgressDialog progressDialog;
@@ -40,12 +41,14 @@ public class VendorPurchaseHistory extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     String user_id;
     UserInfo userInfo;
-    TextView datetv,vname;
+    TextView datetv,vname,trqtxt,tamtxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_purchase_history);
         recyclerView =findViewById(R.id.adminledrec);
+        trqtxt =findViewById(R.id.trqtxt);
+        tamtxt =findViewById(R.id.tamtxt);
         datetv =findViewById(R.id.Datetxt);
         vname =findViewById(R.id.ycompl);
 
@@ -81,6 +84,7 @@ public class VendorPurchaseHistory extends AppCompatActivity {
                             //we have the array named hero inside the object
                             //so here we are getting that json array
                             JSONArray jsonArray = obj.getJSONArray("pkwholesales");
+                            //JSONArray jsonArray1 = obj.getJSONArray("pkwholesales1");
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 server_responce = jsonArray.getJSONObject(i);
@@ -99,14 +103,19 @@ public class VendorPurchaseHistory extends AppCompatActivity {
 
                                     progressDialog.dismiss();
                                     String id = server_responce.getString("id");
-                                    String pid = server_responce.getString("product_id");
-                                    String date = server_responce.getString("date");
+                                  //  String pid = server_responce.getString("product_id");
+                                  //  String date = server_responce.getString("date");
                                     String received_quantity = server_responce.getString("received_quantity");
                                     String product_price = server_responce.getString("product_price");
                                     String sale_price = server_responce.getString("sale_price");
                                     String product_name = server_responce.getString("product_name");
-                                    String vendorid = server_responce.getString("vendor_id");
-
+                                  //  String vendorid = server_responce.getString("vendor_id");
+                                    int x = jsonArray.length()-1;
+                                    server_responce = jsonArray.getJSONObject(x);
+                                    String tams = server_responce.getString("total_amount");
+                                    String trqs = server_responce.getString("total_remaining");
+                                    tamtxt.setText(tams);
+                                    trqtxt.setText(trqs);
 
                                     VendorInventoryLedgerModel model = new VendorInventoryLedgerModel(id,date,product_name,sale_price
                                             ,received_quantity,product_price);

@@ -8,6 +8,26 @@
     >
 
     <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp">
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="match_parent">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,35 +63,66 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:id="@+id/Datetxt"/>
-
-
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
         android:layout_width="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/Date"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/Datetxt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_height="0dp">
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+        android:text="Total Quantity"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textSize="@dimen/_18ssp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:id="@+id/trq"/>
 
-            app:layout_constraintEnd_toEndOf="parent">
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/Datetxt"
+        app:layout_constraintStart_toEndOf="@id/trq"
+        android:text="Total Amount(PKR)"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:textSize="@dimen/_18ssp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:id="@+id/tam"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/trq"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="fgfhthrth"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textSize="@dimen/_18ssp"
+        android:textColor="@color/green"
+        app:layout_constraintEnd_toEndOf="@id/trq"
+
+        android:id="@+id/trqtxt"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tam"
+        app:layout_constraintStart_toStartOf="@id/tam"
+        app:layout_constraintEnd_toEndOf="@id/tam"
+        android:text="ghghgh"
+        android:textSize="@dimen/_18ssp"
+        android:textColor="@color/purple_700"
+
+        android:id="@+id/tamtxt"/>
+
+
+
+
+
 
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/trqtxt"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/tbl"
