@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.warehouse.InventoryActivity;
+import com.example.warehouse.InvoiceActivity;
 import com.example.warehouse.R;
 import com.example.warehouse.VendorLedger;
 import com.example.warehouse.VendorPurchaseHistory;
@@ -69,6 +70,7 @@ public class VendorAdapter extends RecyclerView.Adapter<VendorAdapter.myviewhold
         ImageView ledger = builder.findViewById(R.id.ledger);
         ImageView inventory = builder.findViewById(R.id.inventary);
         ImageView close = builder.findViewById(R.id.closeimage);
+        ImageView invoice = builder.findViewById(R.id.invoive);
 
 
         inventory.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +79,17 @@ public class VendorAdapter extends RecyclerView.Adapter<VendorAdapter.myviewhold
                 Intent intent = new Intent(context, InventoryActivity.class);
                 intent.putExtra("vendor_id",vid);
               intent.putExtra("vendor_name",vname);
+
+                context.startActivity(intent);
+            }
+        });
+
+        invoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, InvoiceActivity.class);
+                intent.putExtra("vendor_id",vid);
+                intent.putExtra("vendor_name",vname);
 
                 context.startActivity(intent);
             }

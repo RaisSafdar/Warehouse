@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".InvoiceActivity"
+    >
+
+    <TextView
+        android:id="@+id/protv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Assigned Vendors"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="@dimen/_10sdp"/>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_2sdp"
+        app:layout_constraintTop_toBottomOf="@id/datessstxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/black"
+        android:id="@+id/saperator"
+        android:layout_marginHorizontal="@dimen/_10sdp"/>
+
+
+
+    <TextView
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/protv"
+        android:textSize="@dimen/_18ssp"
+        android:textStyle="bold"
+        android:text="Date"
+        android:textColor="@color/green"
+        android:gravity="center"
+        android:id="@+id/datessstxt"
+        android:padding="@dimen/_10sdp"/>
+
+    <TextView
+        android:id="@+id/viewinv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:text="Inventory"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        android:textSize="@dimen/_18ssp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@id/datessstxt"
+        app:layout_constraintTop_toBottomOf="@id/protv"
+
+        />
+
+    <TextView
+        android:id="@+id/statuss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:text="Status"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        android:textSize="@dimen/_18ssp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@id/viewinv"
+        app:layout_constraintTop_toBottomOf="@id/protv"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        />
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/vendordaterec"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/saperator"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,7 @@
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_contact_us.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_date.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_inventory.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_invoice.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_my_orders.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/activity_order_history.xml" value="0.20416666666666666" />
@@ -30,6 +31,7 @@
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/cartitems.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/cartitemsnew.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/date_layout.xml" value="0.17037037037037037" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/date_layout_status.xml" value="0.1814814814814815" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/dialog_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
@@ -44,6 +46,7 @@
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/fulfil_product_card.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/historycard.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/ledger_card.xml" value="0.17407407407407408" />
+        <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/myorderscard.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/vendor_ledger_card.xml" value="0.17407407407407408" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/vendor_purchase_history.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Ali Mirza/AndroidStudioProjects/Warehouse/app/src/main/res/layout/vendorcard.xml" value="0.20416666666666666" />

@@ -49,7 +49,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/r22"
-            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_20sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             >
@@ -88,9 +88,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/r11"
             android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/r33"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             >
 
@@ -112,13 +111,45 @@
                 android:textAlignment="center"
                 android:layout_centerHorizontal="true"/>
 
-
-
-
         </RelativeLayout>
 
 
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/r33"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintStart_toEndOf="@id/r22"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <ImageView
+                android:id="@+id/invoive"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/preview" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Invoice"
+                android:textSize="@dimen/_15ssp"
+                android:layout_below="@id/invoive"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"/>
+
+
+
+
+        </RelativeLayout>
 
 
 
